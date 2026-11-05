@@ -1,0 +1,23 @@
+# Tests. Runs on every pull request, and the Deploy workflow runs it before deploying. It never deploys itself.
+name: CI
+
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run type-check
+      - run: npm test
+      - run: npm run test:scripts

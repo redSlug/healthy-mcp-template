@@ -1,0 +1,33 @@
+/**
+ * Wrangler config. These are the DEFAULTS. CI turns them into a deploy config for your own account with
+ * scripts/provision.mjs: it picks your names (APP_NAME), creates the D1 database and KV namespace if they do
+ * not exist yet, and fills in their ids. So no account-specific id or URL belongs in this file.
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "healthy",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    // The URL MCP clients connect to; every token is bound to it. CI sets the real one from the WORKER_URL
+    // repository variable. Locally, `wrangler dev` uses this value (or .dev.vars).
+    "MCP_RESOURCE": "http://localhost:8788/mcp"
+  },
+  // Secrets (never in this file): GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, COOKIE_ENCRYPTION_KEY, USDA_API_KEY.
+  // Locally they live in .dev.vars; in production CI sets them from GitHub secrets.
+  "kv_namespaces": [
+    // id is filled in by scripts/provision.mjs
+    { "binding": "OAUTH_KV", "id": "REPLACED_BY_PROVISION" }
+  ],
+  "d1_databases": [
+    // database_id is filled in by scripts/provision.mjs
+    { "binding": "DB", "database_name": "healthy-db", "database_id": "REPLACED_BY_PROVISION", "migrations_dir": "migrations" }
+  ],
+  // Rate limit for the sign-in endpoints (/register, /authorize, /token, /callback), per IP address. See src/index.ts.
+  "ratelimits": [{ "name": "AUTH_LIMIT", "namespace_id": "1001", "simple": { "limit": 20, "period": 60 } }],
+  "observability": { "enabled": true },
+  "dev": { "port": 8788 }
+}

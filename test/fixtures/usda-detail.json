@@ -1,0 +1,151 @@
+{
+ "fdcId": 2035482,
+ "description": "GREEK YOGURT",
+ "dataType": "Branded",
+ "brandName": "OCEAN SPRAY",
+ "brandOwner": "Ocean Spray Cranberries, Inc.",
+ "servingSize": 30.0,
+ "servingSizeUnit": "g",
+ "foodNutrients": [
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1079,
+    "number": "291",
+    "name": "Fiber, total dietary",
+    "unitName": "g"
+   },
+   "amount": 3.3
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1003,
+    "number": "203",
+    "name": "Protein",
+    "unitName": "g"
+   },
+   "amount": 3.33
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1093,
+    "number": "307",
+    "name": "Sodium, Na",
+    "unitName": "mg"
+   },
+   "amount": 33.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 2000,
+    "number": "269",
+    "name": "Total Sugars",
+    "unitName": "g"
+   },
+   "amount": 70.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1087,
+    "number": "301",
+    "name": "Calcium, Ca",
+    "unitName": "mg"
+   },
+   "amount": 133.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1258,
+    "number": "606",
+    "name": "Fatty acids, total saturated",
+    "unitName": "g"
+   },
+   "amount": 16.67
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1104,
+    "number": "318",
+    "name": "Vitamin A, IU",
+    "unitName": "IU"
+   },
+   "amount": 0.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1257,
+    "number": "605",
+    "name": "Fatty acids, total trans",
+    "unitName": "g"
+   },
+   "amount": 0.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1005,
+    "number": "205",
+    "name": "Carbohydrate, by difference",
+    "unitName": "g"
+   },
+   "amount": 70.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1004,
+    "number": "204",
+    "name": "Total lipid (fat)",
+    "unitName": "g"
+   },
+   "amount": 20.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1008,
+    "number": "208",
+    "name": "Energy",
+    "unitName": "kcal"
+   },
+   "amount": 467.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1162,
+    "number": "401",
+    "name": "Vitamin C, total ascorbic acid",
+    "unitName": "mg"
+   },
+   "amount": 0.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1253,
+    "number": "601",
+    "name": "Cholesterol",
+    "unitName": "mg"
+   },
+   "amount": 0.0
+  },
+  {
+   "type": "FoodNutrient",
+   "nutrient": {
+    "id": 1089,
+    "number": "303",
+    "name": "Iron, Fe",
+    "unitName": "mg"
+   },
+   "amount": 0.0
+  }
+ ]
+}

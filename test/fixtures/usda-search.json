@@ -1,0 +1,447 @@
+{
+ "totalHits": 23623,
+ "foods": [
+  {
+   "fdcId": 2035482,
+   "description": "GREEK YOGURT",
+   "dataType": "Branded",
+   "brandName": "OCEAN SPRAY",
+   "brandOwner": "Ocean Spray Cranberries, Inc.",
+   "servingSize": 30.0,
+   "servingSizeUnit": "g",
+   "foodNutrients": [
+    {
+     "nutrientId": 1003,
+     "nutrientName": "Protein",
+     "nutrientNumber": "203",
+     "unitName": "G",
+     "value": 3.33
+    },
+    {
+     "nutrientId": 1004,
+     "nutrientName": "Total lipid (fat)",
+     "nutrientNumber": "204",
+     "unitName": "G",
+     "value": 20.0
+    },
+    {
+     "nutrientId": 1005,
+     "nutrientName": "Carbohydrate, by difference",
+     "nutrientNumber": "205",
+     "unitName": "G",
+     "value": 70.0
+    },
+    {
+     "nutrientId": 1008,
+     "nutrientName": "Energy",
+     "nutrientNumber": "208",
+     "unitName": "KCAL",
+     "value": 467
+    },
+    {
+     "nutrientId": 2000,
+     "nutrientName": "Total Sugars",
+     "nutrientNumber": "269",
+     "unitName": "G",
+     "value": 70.0
+    },
+    {
+     "nutrientId": 1079,
+     "nutrientName": "Fiber, total dietary",
+     "nutrientNumber": "291",
+     "unitName": "G",
+     "value": 3.3
+    },
+    {
+     "nutrientId": 1087,
+     "nutrientName": "Calcium, Ca",
+     "nutrientNumber": "301",
+     "unitName": "MG",
+     "value": 133
+    },
+    {
+     "nutrientId": 1089,
+     "nutrientName": "Iron, Fe",
+     "nutrientNumber": "303",
+     "unitName": "MG",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1093,
+     "nutrientName": "Sodium, Na",
+     "nutrientNumber": "307",
+     "unitName": "MG",
+     "value": 33.0
+    },
+    {
+     "nutrientId": 1104,
+     "nutrientName": "Vitamin A, IU",
+     "nutrientNumber": "318",
+     "unitName": "IU",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1162,
+     "nutrientName": "Vitamin C, total ascorbic acid",
+     "nutrientNumber": "401",
+     "unitName": "MG",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1253,
+     "nutrientName": "Cholesterol",
+     "nutrientNumber": "601",
+     "unitName": "MG",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1257,
+     "nutrientName": "Fatty acids, total trans",
+     "nutrientNumber": "605",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1258,
+     "nutrientName": "Fatty acids, total saturated",
+     "nutrientNumber": "606",
+     "unitName": "G",
+     "value": 16.7
+    }
+   ]
+  },
+  {
+   "fdcId": 373595,
+   "description": "GREEK YOGURT",
+   "dataType": "Branded",
+   "brandOwner": "TRADER JOE'S",
+   "servingSize": 227.0,
+   "servingSizeUnit": "g",
+   "foodNutrients": [
+    {
+     "nutrientId": 1079,
+     "nutrientName": "Fiber, total dietary",
+     "nutrientNumber": "291",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1087,
+     "nutrientName": "Calcium, Ca",
+     "nutrientNumber": "301",
+     "unitName": "MG",
+     "value": 110
+    },
+    {
+     "nutrientId": 1089,
+     "nutrientName": "Iron, Fe",
+     "nutrientNumber": "303",
+     "unitName": "MG",
+     "value": 0.16
+    },
+    {
+     "nutrientId": 1104,
+     "nutrientName": "Vitamin A, IU",
+     "nutrientNumber": "318",
+     "unitName": "IU",
+     "value": 220
+    },
+    {
+     "nutrientId": 1162,
+     "nutrientName": "Vitamin C, total ascorbic acid",
+     "nutrientNumber": "401",
+     "unitName": "MG",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1003,
+     "nutrientName": "Protein",
+     "nutrientNumber": "203",
+     "unitName": "G",
+     "value": 4.85
+    },
+    {
+     "nutrientId": 1004,
+     "nutrientName": "Total lipid (fat)",
+     "nutrientNumber": "204",
+     "unitName": "G",
+     "value": 7.05
+    },
+    {
+     "nutrientId": 1005,
+     "nutrientName": "Carbohydrate, by difference",
+     "nutrientNumber": "205",
+     "unitName": "G",
+     "value": 12.3
+    },
+    {
+     "nutrientId": 1008,
+     "nutrientName": "Energy",
+     "nutrientNumber": "208",
+     "unitName": "KCAL",
+     "value": 132
+    },
+    {
+     "nutrientId": 2000,
+     "nutrientName": "Total Sugars",
+     "nutrientNumber": "269",
+     "unitName": "G",
+     "value": 10.1
+    },
+    {
+     "nutrientId": 1092,
+     "nutrientName": "Potassium, K",
+     "nutrientNumber": "306",
+     "unitName": "MG",
+     "value": 119
+    },
+    {
+     "nutrientId": 1093,
+     "nutrientName": "Sodium, Na",
+     "nutrientNumber": "307",
+     "unitName": "MG",
+     "value": 59.0
+    },
+    {
+     "nutrientId": 1253,
+     "nutrientName": "Cholesterol",
+     "nutrientNumber": "601",
+     "unitName": "MG",
+     "value": 20.0
+    },
+    {
+     "nutrientId": 1257,
+     "nutrientName": "Fatty acids, total trans",
+     "nutrientNumber": "605",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1258,
+     "nutrientName": "Fatty acids, total saturated",
+     "nutrientNumber": "606",
+     "unitName": "G",
+     "value": 3.52
+    }
+   ]
+  },
+  {
+   "fdcId": 2038865,
+   "description": "GREEK YOGURT",
+   "dataType": "Branded",
+   "brandName": "CHOBANI",
+   "brandOwner": "Chobani, Inc.",
+   "servingSize": 150.0,
+   "servingSizeUnit": "g",
+   "foodNutrients": [
+    {
+     "nutrientId": 1003,
+     "nutrientName": "Protein",
+     "nutrientNumber": "203",
+     "unitName": "G",
+     "value": 8.67
+    },
+    {
+     "nutrientId": 1004,
+     "nutrientName": "Total lipid (fat)",
+     "nutrientNumber": "204",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1005,
+     "nutrientName": "Carbohydrate, by difference",
+     "nutrientNumber": "205",
+     "unitName": "G",
+     "value": 10.7
+    },
+    {
+     "nutrientId": 1008,
+     "nutrientName": "Energy",
+     "nutrientNumber": "208",
+     "unitName": "KCAL",
+     "value": 80.0
+    },
+    {
+     "nutrientId": 2000,
+     "nutrientName": "Total Sugars",
+     "nutrientNumber": "269",
+     "unitName": "G",
+     "value": 8.67
+    },
+    {
+     "nutrientId": 1079,
+     "nutrientName": "Fiber, total dietary",
+     "nutrientNumber": "291",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1087,
+     "nutrientName": "Calcium, Ca",
+     "nutrientNumber": "301",
+     "unitName": "MG",
+     "value": 100
+    },
+    {
+     "nutrientId": 1089,
+     "nutrientName": "Iron, Fe",
+     "nutrientNumber": "303",
+     "unitName": "MG",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1093,
+     "nutrientName": "Sodium, Na",
+     "nutrientNumber": "307",
+     "unitName": "MG",
+     "value": 43.0
+    },
+    {
+     "nutrientId": 1104,
+     "nutrientName": "Vitamin A, IU",
+     "nutrientNumber": "318",
+     "unitName": "IU",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1162,
+     "nutrientName": "Vitamin C, total ascorbic acid",
+     "nutrientNumber": "401",
+     "unitName": "MG",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1253,
+     "nutrientName": "Cholesterol",
+     "nutrientNumber": "601",
+     "unitName": "MG",
+     "value": 3.0
+    },
+    {
+     "nutrientId": 1257,
+     "nutrientName": "Fatty acids, total trans",
+     "nutrientNumber": "605",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1258,
+     "nutrientName": "Fatty acids, total saturated",
+     "nutrientNumber": "606",
+     "unitName": "G",
+     "value": 0.0
+    }
+   ]
+  },
+  {
+   "fdcId": 2475934,
+   "description": "GREEK YOGURT",
+   "dataType": "Branded",
+   "brandName": "OLYMPIANA",
+   "brandOwner": "Cafe Hon, Inc.",
+   "servingSize": 170.0,
+   "servingSizeUnit": "g",
+   "foodNutrients": [
+    {
+     "nutrientId": 1003,
+     "nutrientName": "Protein",
+     "nutrientNumber": "203",
+     "unitName": "G",
+     "value": 11.8
+    },
+    {
+     "nutrientId": 1004,
+     "nutrientName": "Total lipid (fat)",
+     "nutrientNumber": "204",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1005,
+     "nutrientName": "Carbohydrate, by difference",
+     "nutrientNumber": "205",
+     "unitName": "G",
+     "value": 4.12
+    },
+    {
+     "nutrientId": 1008,
+     "nutrientName": "Energy",
+     "nutrientNumber": "208",
+     "unitName": "KCAL",
+     "value": 65.0
+    },
+    {
+     "nutrientId": 2000,
+     "nutrientName": "Total Sugars",
+     "nutrientNumber": "269",
+     "unitName": "G",
+     "value": 4.12
+    },
+    {
+     "nutrientId": 1079,
+     "nutrientName": "Fiber, total dietary",
+     "nutrientNumber": "291",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1087,
+     "nutrientName": "Calcium, Ca",
+     "nutrientNumber": "301",
+     "unitName": "MG",
+     "value": 160
+    },
+    {
+     "nutrientId": 1089,
+     "nutrientName": "Iron, Fe",
+     "nutrientNumber": "303",
+     "unitName": "MG",
+     "value": 0.1
+    },
+    {
+     "nutrientId": 1092,
+     "nutrientName": "Potassium, K",
+     "nutrientNumber": "306",
+     "unitName": "MG",
+     "value": 544
+    },
+    {
+     "nutrientId": 1093,
+     "nutrientName": "Sodium, Na",
+     "nutrientNumber": "307",
+     "unitName": "MG",
+     "value": 44.0
+    },
+    {
+     "nutrientId": 1110,
+     "nutrientName": "Vitamin D (D2 + D3), International Units",
+     "nutrientNumber": "324",
+     "unitName": "IU",
+     "value": 150
+    },
+    {
+     "nutrientId": 1253,
+     "nutrientName": "Cholesterol",
+     "nutrientNumber": "601",
+     "unitName": "MG",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1257,
+     "nutrientName": "Fatty acids, total trans",
+     "nutrientNumber": "605",
+     "unitName": "G",
+     "value": 0.0
+    },
+    {
+     "nutrientId": 1258,
+     "nutrientName": "Fatty acids, total saturated",
+     "nutrientNumber": "606",
+     "unitName": "G",
+     "value": 0.0
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,115 @@
+# Creates (if missing) and updates your own deployment on Cloudflare. Everything runs here; nothing is done from a laptop.
+# The secrets and variables it needs are listed in the README.
+#
+# Runs when you click "Run workflow", and on pushes to main ONLY once the repository variable DEPLOY_ENABLED is "true".
+# There is deliberately no default APP_NAME, so this can never be pointed at an existing Worker by accident.
+# Each secret is given only to the step that needs it, and dependencies are installed without running their install scripts.
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: github.event_name == 'workflow_dispatch' || vars.DEPLOY_ENABLED == 'true'
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: production
+    # One deploy at a time, and never cancel one that is running: two overlapping runs could migrate twice.
+    concurrency:
+      group: deploy
+      cancel-in-progress: false
+    env:
+      APP_NAME: ${{ vars.APP_NAME }}
+      WORKER_URL: ${{ vars.WORKER_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+
+      - name: Check that everything needed is set
+        env:
+          HAVE_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+          HAVE_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+          HAVE_OAUTH_GITHUB_CLIENT_ID: ${{ secrets.OAUTH_GITHUB_CLIENT_ID != '' }}
+          HAVE_OAUTH_GITHUB_CLIENT_SECRET: ${{ secrets.OAUTH_GITHUB_CLIENT_SECRET != '' }}
+          HAVE_COOKIE_ENCRYPTION_KEY: ${{ secrets.COOKIE_ENCRYPTION_KEY != '' }}
+          HAVE_USDA_API_KEY: ${{ secrets.USDA_API_KEY != '' }}
+        run: |
+          missing=""
+          for name in APP_NAME WORKER_URL; do [ -n "${!name}" ] || missing="$missing $name"; done
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID OAUTH_GITHUB_CLIENT_ID OAUTH_GITHUB_CLIENT_SECRET COOKIE_ENCRYPTION_KEY USDA_API_KEY; do
+            have="HAVE_$name"; [ "${!have}" = "true" ] || missing="$missing $name"
+          done
+          if [ -n "$missing" ]; then echo "::error::Not set:$missing. See the README."; exit 1; fi
+          node -e '
+            const u = require("./config/allowed-users.json");
+            const ok = Array.isArray(u) && u.length > 0 && u.every((x) => Number.isSafeInteger(x.github_id));
+            if (!ok) { console.error("::error::config/allowed-users.json must be a non-empty list where every entry has a numeric github_id (see the README)."); process.exit(1); }
+          '
+
+      - name: Create the database and KV namespace if missing, and write the deploy config
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/provision.mjs
+
+      # Tokens are bound to MCP_RESOURCE, so it must be the real https address, never the localhost default from wrangler.jsonc.
+      - name: Check that the deploy config has an https MCP_RESOURCE
+        run: |
+          node -e '
+            const r = require("./.wrangler-deploy.json").vars?.MCP_RESOURCE;
+            if (typeof r !== "string" || !r.startsWith("https://") || !r.endsWith("/mcp")) { console.error("::error::MCP_RESOURCE must be an https address ending in /mcp, got: " + r + ". Check WORKER_URL."); process.exit(1); }
+          '
+
+      - name: Apply database migrations
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler d1 migrations apply DB --remote --config .wrangler-deploy.json
+
+      # The Worker secrets go up in the same step as the code, so the new code never runs without them.
+      # GitHub does not allow secret names starting with GITHUB_, hence the OAUTH_ prefix on the two GitHub ones.
+      - name: Deploy the Worker with its secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GITHUB_CLIENT_ID: ${{ secrets.OAUTH_GITHUB_CLIENT_ID }}
+          GITHUB_CLIENT_SECRET: ${{ secrets.OAUTH_GITHUB_CLIENT_SECRET }}
+          COOKIE_ENCRYPTION_KEY: ${{ secrets.COOKIE_ENCRYPTION_KEY }}
+          USDA_API_KEY: ${{ secrets.USDA_API_KEY }}
+        run: |
+          node -e '
+            const e = process.env;
+            const keys = ["GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET", "COOKIE_ENCRYPTION_KEY", "USDA_API_KEY"];
+            require("fs").writeFileSync(process.env.RUNNER_TEMP + "/secrets.json", JSON.stringify(Object.fromEntries(keys.map((k) => [k, e[k]]))));
+          '
+          npx wrangler deploy --config .wrangler-deploy.json --secrets-file "$RUNNER_TEMP/secrets.json"
+          rm -f "$RUNNER_TEMP/secrets.json"
+
+      # A brand-new Worker's address can take a few seconds to go live, so wait for it (up to about 90 seconds)
+      # instead of testing once. Every attempt is printed, so the log shows what happened.
+      - name: Wait for the server and check that it refuses requests without a token
+        run: |
+          for attempt in $(seq 1 18); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$WORKER_URL/mcp" -H 'content-type: application/json' -d '{}' || true)
+            echo "attempt $attempt: POST /mcp without a token answered $code"
+            case "$code" in
+              401) echo "Connector URL for your MCP client: $WORKER_URL/mcp"; exit 0 ;;
+              404|000|5??) sleep 5 ;;
+              *) echo "::error::Expected 401 from $WORKER_URL/mcp but got $code. The server should refuse requests without a token."; exit 1 ;;
+            esac
+          done
+          echo "::error::$WORKER_URL/mcp still did not answer 401 after about 90 seconds (last answer: $code). Check WORKER_URL and APP_NAME, and the Worker in your Cloudflare dashboard."
+          exit 1
